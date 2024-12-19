@@ -6,6 +6,7 @@ import { IoIosLink } from "react-icons/io";
 import { BsQrCode } from "react-icons/bs";
 import { useTheme } from "next-themes";
 import { FaDownload } from "react-icons/fa";
+import { motion } from "framer-motion";
 
 const page = () => {
   const [url, setUrl] = useState<string>("");
@@ -58,15 +59,30 @@ const page = () => {
   return (
     <>
       <main className="min-h-[90dvh] flex flex-col items-center justify-center px-4 py-6">
-        <div className="container mx-auto">
-          <div className="text-center mb-4">
+        <motion.div
+          initial={{ opacity: 0, filter: "blur(10px)" }}
+          animate={{ opacity: 1, filter: "blur(0px)" }}
+          transition={{ duration: 0.7 }}
+          className="container mx-auto"
+        >
+          <motion.div
+            initial={{ opacity: 0, filter: "blur(10px)" }}
+            animate={{ opacity: 1, filter: "blur(0px)" }}
+            transition={{ delay: 0.3, duration: 0.7 }}
+            className="text-center mb-4"
+          >
             <h1 className="text-4xl font-semibold text-center mb-4">QR Code Generator</h1>
             <p className="text-xs md:text-sm font-medium text-default-600 lg:w-1/2 md:mx-auto">
               Use this tool to easily generate a QR code for any URL. Simply enter the URL in the input field below,
               and a unique QR code will be created instantly. Perfect for sharing links, websites, or digital content in a quick and accessible way!
             </p>
-          </div>
-          <div className="text-center lg:w-1/2 mx-auto mt-4">
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, filter: "blur(10px)" }}
+            animate={{ opacity: 1, filter: "blur(0px)" }}
+            transition={{ delay: 0.5, duration: 0.7 }}
+            className="text-center lg:w-1/2 mx-auto mt-4"
+          >
             <Form onSubmit={onSubmit} validationBehavior="native" validationErrors={errors} onReset={() => setSubmitted(null)} className="flex flex-col items-center justify-center">
               <Input
                 type="text"
@@ -92,17 +108,20 @@ const page = () => {
                 startContent={<BsQrCode />}
                 className="bg-default-200 w-full text-black mt-3 dark:bg-default-100 dark:text-white font-medium"
                 variant="flat"
-                // size="sm"
                 type="submit"
                 radius="full"
               >
                 Create QR Code
               </Button>
             </Form>
-          </div>
-
+          </motion.div>
           {qrCodeUrl && (
-            <div className="mt-6 flex flex-col items-center justify-center">
+            <motion.div
+              initial={{ opacity: 0, filter: "blur(10px)" }}
+              animate={{ opacity: 1, filter: "blur(0px)" }}
+              transition={{ duration: 0.7 }}
+              className="mt-6 flex flex-col items-center justify-center"
+            >
               <Input
                 type="color"
                 value={qrColor || (theme === 'dark' ? '#fff' : '#000')}
@@ -122,7 +141,6 @@ const page = () => {
                 bgColor="transparent"
                 fgColor={qrColor || (theme === 'dark' ? '#fff' : '#000')}
               />
-
               <Button
                 onPress={downloadQRCode}
                 radius="full"
@@ -132,9 +150,9 @@ const page = () => {
               >
                 Download QR Code
               </Button>
-            </div>
+            </motion.div>
           )}
-        </div>
+        </motion.div>
       </main>
     </>
   );

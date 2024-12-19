@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Providers } from "@/Providers/Providers";
 import Header from "@/components/Layout/Header";
+import { Analytics } from "@vercel/analytics/react"
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -20,7 +21,7 @@ export const metadata = {
   openGraph: {
     title: "Dynamic QR Code Generator",
     description: "Generate QR Codes for your URLs quickly and easily.",
-    url: "https://your-site.com",
+    url: "https://dynamic-qrcode-generator.vercel.app/",
     images: [
       {
         url: "https://res.cloudinary.com/dtpsyi5am/image/upload/v1734574896/bq53vle11tng9h5scmew.jpg",
@@ -48,6 +49,7 @@ export default function RootLayout({
         <Providers>
           <Header />
           {children}
+          <Analytics />
         </Providers>
       </body>
     </html>
